@@ -12,6 +12,7 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +27,13 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                TextView textValue = findViewById(R.id.text_value);
+                String stringValue = textValue.getText().toString();
+                int originalValue =   Integer.parseInt(stringValue);
+                int newValue = Myworker.doubleTheValue(originalValue);
+                textValue.setText(Integer.toString(newValue));
+
+                Snackbar.make(view, "Change value " + originalValue + " to " + newValue, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
